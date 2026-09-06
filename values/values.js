@@ -1,4 +1,4 @@
-import { adjustColorBrightness } from '../../assets/utils.js';
+import { adjustColorBrightness } from '../../decolor/assets/utils.js';
 
 let min = 0;
 let max = 255;
