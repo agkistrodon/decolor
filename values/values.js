@@ -26,19 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function changeSiteColors(r, g, b) {
+function changeSiteColors(r, g, b, changeText = true) {
     document.documentElement.style.setProperty('--background', `rgb(${r}, ${g}, ${b})`);
     document.documentElement.style.setProperty('--background-body', `rgb(${r}, ${g}, ${b})`);
 
     const hexColor = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
     let textColor = adjustColorBrightness(hexColor);
-    document.documentElement.style.setProperty('--text-main', textColor);
+
+    if (changeText) {
+        document.documentElement.style.setProperty('--text-main', textColor);
+        document.documentElement.style.setProperty('--text-bright', `rgb(${r}, ${g}, ${b})`);
+    }
 
     document.documentElement.style.setProperty('--button-base', textColor);
-    document.documentElement.style.setProperty('--text-bright', `rgb(${r}, ${g}, ${b})`);
-
-
-
 }
 
 function chooseColor() {
@@ -57,7 +57,7 @@ function checkValue() {
     let actualValue =  0.299 * r + 0.587 * g + 0.114 * b;
 
 
-    changeSiteColors(actualValue, actualValue, actualValue);
+    changeSiteColors(actualValue, actualValue, actualValue, false);
 
     let answer = document.getElementById('result');
 
