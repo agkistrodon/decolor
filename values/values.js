@@ -24,6 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     checkButton.addEventListener('click', () => {
         checkValue();
     });
+
+    const giveUpButton = document.getElementById('giveUp');
+    giveUpButton.addEventListener('click', () => {
+        giveUp();
+    });
 });
 
 function changeSiteColors(r, g, b, changeText = true) {
@@ -35,9 +40,9 @@ function changeSiteColors(r, g, b, changeText = true) {
 
     if (changeText) {
         document.documentElement.style.setProperty('--text-main', textColor);
-            document.documentElement.style.setProperty('--text-bright', `rgb(${r}, ${g}, ${b})`);
     }
 
+    document.documentElement.style.setProperty('--text-bright', `rgb(${r}, ${g}, ${b})`);
     document.documentElement.style.setProperty('--button-base', textColor);
 }
 
@@ -55,9 +60,6 @@ function checkValue() {
     const value = 255 - parseInt(slider.value, 10) / 100 * 255; // Convert slider value to 0-255 range
 
     let actualValue =  0.299 * r + 0.587 * g + 0.114 * b;
-
-
-    changeSiteColors(actualValue, actualValue, actualValue, false);
 
     let answer = document.getElementById('result');
 
@@ -80,7 +82,22 @@ function checkValue() {
     }
 
     console.log(`Slider Value: ${value}, Actual Value: ${Math.round(actualValue)}`);
+}
+
+function giveUp() {
+    const slider = document.querySelector('[type="range"]');
+    const value = 255 - parseInt(slider.value, 10) / 100 * 255;
+    let actualValue =  0.299 * r + 0.587 * g + 0.114 * b;
+    changeSiteColors(actualValue, actualValue, actualValue, false);
 
 
+
+    let accuracy = 100 - Math.abs(value - Math.round(actualValue)) * 100 / 255;
+    let answer = document.getElementById('result');
+    answer.innerHTML = `<i>final</i> accuracy ${accuracy.toFixed(2)}%`;
+
+    document.getElementById('check').disabled = true;
+    document.getElementById('giveUp').disabled = true;
+    document.querySelector('[type="range"]').disabled = true;
 
 }
