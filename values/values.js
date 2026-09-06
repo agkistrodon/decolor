@@ -35,7 +35,7 @@ function changeSiteColors(r, g, b, changeText = true) {
 
     if (changeText) {
         document.documentElement.style.setProperty('--text-main', textColor);
-        document.documentElement.style.setProperty('--text-bright', `rgb(${r}, ${g}, ${b})`);
+            document.documentElement.style.setProperty('--text-bright', `rgb(${r}, ${g}, ${b})`);
     }
 
     document.documentElement.style.setProperty('--button-base', textColor);
