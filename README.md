@@ -1,3 +1,3 @@
 # decolor
 
-some fun color games!
+some fun color games! play [here](https://shrutib.com/decolor/).
